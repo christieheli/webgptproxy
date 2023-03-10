@@ -2,7 +2,7 @@ import openai
 import gradio as gr
 import tiktoken
 
-API_KEY = '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'
+API_KEY = ''
 openai.api_key = API_KEY
 
 
