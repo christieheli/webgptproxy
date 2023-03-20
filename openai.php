@@ -20,7 +20,6 @@ class openai {
 			'temperature' => 0.8,
 		];
 		$requestParam = json_encode($body);
-		file_put_contents('chat.log', $requestParam);
 		$url = 'https://api.openai.com/v1/chat/completions';
 		$this->_http->setHeader('Content-Type', 'application/json');
 		$this->_http->setHeader('Authorization', 'Bearer ' .self::APPKEY);
