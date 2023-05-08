@@ -221,7 +221,7 @@ class http
 	 * @param string $data
 	 * @param string $content_type
 	 */
-	function setRawData($data = null, $content_type)
+	function setRawData($data = null, $content_type = null)
 	{
 		$this->_param = $data;
 		switch ($content_type) {
