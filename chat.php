@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
-// 模型名称
+// model name
 $model = isset($_GET['model']) ? $_GET['model'] : '';
 
 if ($action == 'conversation') {
@@ -12,15 +12,25 @@ if ($action == 'conversation') {
 	$openai = new openai();
 
 	$prompt = file_get_contents('php://input');
+	if (empty($prompt)) {
+		die('{"code":"-2"}');
+	}
 	$res = $openai->chatCompletions($prompt, $model);
 	die($res);
 }
 if ($action == 'embeddings') {
 	include 'openai.php';
 	$openai = new openai();
-
-	$input = file_get_contents('php://input');
-	$res = $openai->embeddings($input, $model);
+	// post data format: {"content":"xxx"}
+	$jsonStr = file_get_contents('php://input');
+	if (empty($jsonStr)) {
+		die('{"code":"-2"}');
+	}
+	$text = json_encode($jsonStr);
+	if (empty($text) || empty($text['content'])) {
+		die('{"code":"-3"}');
+	}
+	$res = $openai->embeddings($text['content'], $model);
 	die($res);
 }
 die('{"code":"-1"}');
