@@ -26,7 +26,7 @@ if ($action == 'embeddings') {
 	if (empty($jsonStr)) {
 		die('{"code":"-2"}');
 	}
-	$text = json_decode($jsonStr);
+	$text = json_decode($jsonStr, true);
 	if (empty($text) || empty($text['content'])) {
 		die('{"code":"-3"}');
 	}
