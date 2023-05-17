@@ -14,8 +14,12 @@
   
   openai chat completion接口
   
+  请求代理接口，post的数据，就是原接口提示语prompt格式的json串
+  
   http://xxx/chat.php?action=conversation
   
   openai embeddings接口
+  
+  请求代理接口， post的数据格式为：{"content":"文本内容"}
   
   http://xxx/chat.php?action=embeddings
