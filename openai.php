@@ -17,7 +17,7 @@ class openai {
 		$model = isset($model) && !empty($model) ? $model : 'gpt-3.5-turbo';
 		$body = [
 			'model' => $model,
-			'messages' => json_decode($prompt),
+			'messages' => json_decode($prompt, true),
 			'temperature' => 0.8,
 		];
 		$requestParam = json_encode($body);
