@@ -34,7 +34,7 @@ class openai {
 		$model = isset($model) && !empty($model) ? $model : 'text-embedding-ada-002';
 		$body = [
 			'model' => $model,
-			'messages' => $input
+			'input' => $input
 		];
 		$requestParam = json_encode($body);
 		$url = 'https://api.openai.com/v1/embeddings';
