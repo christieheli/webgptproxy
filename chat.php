@@ -13,4 +13,12 @@ if ($action == 'conversation') {
 	$res = $openai->chatCompletions($prompt);
 	die($res);
 }
+if ($action == 'embeddings') {
+	include 'openai.php';
+	$openai = new openai();
+
+	$input = file_get_contents('php://input');
+	$res = $openai->embeddings($input);
+	die($res);
+}
 die('{"code":"-1"}');
