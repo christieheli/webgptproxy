@@ -11,12 +11,11 @@ if ($action == 'conversation') {
 	include 'openai.php';
 	$openai = new openai();
 
-	$prompt = file_get_contents('php://input');
-	if (empty($prompt)) {
+	$content = file_get_contents('php://input');
+	if (empty($contents)) {
 		die('{"code":"-2"}');
 	}
-	$functions = isset($_POST['functions']) ? $_POST['functions'] : '';
-	$res = $openai->chatCompletions($prompt, $functions, $model);
+	$res = $openai->chatCompletions($content, $model);
 	die($res);
 }
 if ($action == 'embeddings') {
