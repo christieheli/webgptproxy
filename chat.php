@@ -20,7 +20,7 @@ if ($action == 'conversation') {
 		die('{"code":"-3"}');
 	}
 	$prompt = $contentArray['prompt'];
-	$functions = $contentArray['functions'];
+	$functions = isset($contentArray['functions']) && !empty($contentArray['functions']) ? $contentArray['functions'] : '';
 	$res = $openai->chatCompletions($prompt, $functions, $model);
 	die($res);
 }
