@@ -15,7 +15,8 @@ if ($action == 'conversation') {
 	if (empty($prompt)) {
 		die('{"code":"-2"}');
 	}
-	$res = $openai->chatCompletions($prompt, $model);
+	$functions = isset($_POST['functions']) ? $_POST['functions'] : '';
+	$res = $openai->chatCompletions($prompt, $functions, $model);
 	die($res);
 }
 if ($action == 'embeddings') {
