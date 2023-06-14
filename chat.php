@@ -15,7 +15,13 @@ if ($action == 'conversation') {
 	if (empty($contents)) {
 		die('{"code":"-2"}');
 	}
-	$res = $openai->chatCompletions($content, $model);
+	$contentArray = json_decode($content, true);
+	if (empty($contentArray) || empty($contentArray['prompt'])) {
+		die('{"code":"-3"}');
+	}
+	$prompt = $contentArray['prompt'];
+	$functions = $contentArray['functions'];
+	$res = $openai->chatCompletions($prompt, $functions, $model);
 	die($res);
 }
 if ($action == 'embeddings') {
