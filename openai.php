@@ -12,7 +12,7 @@ class openai {
 		$this->_http = new http();
 	}
 
-	public function chatCompletions($prompt, $model = '')
+	public function chatCompletions($prompt, $functions = '', $model = '')
 	{
 		$model = isset($model) && !empty($model) ? $model : 'gpt-3.5-turbo';
 		$body = [
@@ -20,6 +20,10 @@ class openai {
 			'messages' => json_decode($prompt, true),
 			'temperature' => 0.8,
 		];
+		if (isset($functions) && !empty($functions)) {
+			$body['functions'] = json_decode($functions, true);
+			$body['function_call'] = 'auto';
+		}
 		$requestParam = json_encode($body);
 		$url = 'https://api.openai.com/v1/chat/completions';
 		$this->_http->setHeader('Content-Type', 'application/json');
