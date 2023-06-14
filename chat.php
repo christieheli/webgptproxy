@@ -12,7 +12,7 @@ if ($action == 'conversation') {
 	$openai = new openai();
 
 	$content = file_get_contents('php://input');
-	if (empty($contents)) {
+	if (empty($content)) {
 		die('{"code":"-2"}');
 	}
 	$contentArray = json_decode($content, true);
