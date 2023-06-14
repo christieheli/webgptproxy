@@ -17,11 +17,11 @@ class openai {
 		$model = isset($model) && !empty($model) ? $model : 'gpt-3.5-turbo';
 		$body = [
 			'model' => $model,
-			'messages' => json_decode($prompt, true),
+			'messages' => $prompt,
 			'temperature' => 0.8,
 		];
 		if (isset($functions) && !empty($functions)) {
-			$body['functions'] = json_decode($functions, true);
+			$body['functions'] = $functions;
 			$body['function_call'] = 'auto';
 		}
 		$requestParam = json_encode($body);
